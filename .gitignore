@@ -1,0 +1,7 @@
+/myshop-commons/target
+/myshop-dependencies/target
+/myshop-domain/target
+/myshop-web-admin/target
+/myshop-web-admin/logs
+/myshop-web-api/target
+/myshop-web-UI/target
