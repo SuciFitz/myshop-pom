@@ -1,7 +1,7 @@
 package com.sucifitz.myshop.web.admin.service;
 
+import com.sucifitz.myshop.commons.dto.BaseResult;
 import com.sucifitz.myshop.domain.TbUser;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public interface TbUserService {
      * @Param: [tbUser]
      * @Return: void
      **/
-    void insert(TbUser tbUser);
+    BaseResult save(TbUser tbUser);
 
     /**
      * @Description: 删除
