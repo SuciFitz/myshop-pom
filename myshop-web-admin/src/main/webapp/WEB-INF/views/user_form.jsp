@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 	<title>我的商城 | 用户表单</title>
@@ -41,38 +42,34 @@
 						</div>
 						<!-- /.box-header -->
 						<!-- form start -->
-						<form class="form-horizontal" action="/user/save" method="post">
+						<form:form id="inputForm" cssClass="form-horizontal required" action="/user/save" method="post" modelAttribute="tbUser">
 							<div class="box-body">
 								<div class="form-group">
-									<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+									<label for="email" class="col-sm-2 control-label">邮箱</label>
 									
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputEmail" name="email"
-										       placeholder="Email">
+										<form:input path="email" cssClass="form-control required email" placeholder="Email" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPassword" class="col-sm-2 control-label">密码</label>
+									<label for="password" class="col-sm-2 control-label">密码</label>
 									
 									<div class="col-sm-10">
-										<input type="password" class="form-control" id="inputPassword" name="password"
-										       placeholder="请输入密码">
+										<form:password path="password" cssClass="form-control required" placeholder="请输入密码"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputName" class="col-sm-2 control-label">姓名</label>
+									<label for="username" class="col-sm-2 control-label">姓名</label>
 									
 									<div class="col-sm-10">
-										<input type="password" class="form-control" id="inputName" name="username"
-										       placeholder="请输入姓名">
+										<form:input path="username" cssClass="form-control required" placeholder="请输入姓名"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPhone" class="col-sm-2 control-label">手机号码</label>
+									<label for="phone" class="col-sm-2 control-label">手机号码</label>
 									
 									<div class="col-sm-10">
-										<input type="password" class="form-control" id="inputPhone" name="phone"
-										       placeholder="请输入手机号码">
+										<form:input path="phone" cssClass="form-control required mobile" placeholder="请输入手机号码"/>
 									</div>
 								</div>
 							</div>
@@ -82,7 +79,7 @@
 								<button type="submit" class="btn btn-info pull-right">提交</button>
 							</div>
 							<!-- /.box-footer -->
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>
@@ -92,5 +89,18 @@
 	<jsp:include page="../includes/copyright.jsp"/>
 </div>
 <jsp:include page="../includes/footer.jsp"/>
+<script>
+    $(function () {
+        $("#inputForm").validate({
+            errorElement: 'span',
+            errorClass: 'help-block',
+
+            errorPlacement: function (error, element) {
+                element.parent().parent().attr("class", "form-group has-error");
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>
 </body>
 </html>
