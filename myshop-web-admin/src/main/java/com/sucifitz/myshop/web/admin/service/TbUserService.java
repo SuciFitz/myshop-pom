@@ -67,5 +67,5 @@ public interface TbUserService {
      * @Param: [keyWord]
      * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
      **/
-    List<TbUser> search(String keyword);
+    List<TbUser> search(TbUser tbUser);
 }

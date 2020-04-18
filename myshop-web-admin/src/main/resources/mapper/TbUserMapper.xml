@@ -87,13 +87,13 @@
           tb_user AS a
         <where>
             <if test="username != null and username != ''">
-                OR a.username like CONCAT ('%', #{username}, '%')
+                AND a.username like CONCAT ('%', #{username}, '%')
             </if>
             <if test="phone != null and phone != ''">
-                OR a.phone like CONCAT ('%', #{phone}, '%')
+                AND a.phone like CONCAT ('%', #{phone}, '%')
             </if>
             <if test="email != null and email != ''">
-                OR a.email like CONCAT ('%', #{email}, '%')
+                AND a.email like CONCAT ('%', #{email}, '%')
             </if>
         </where>
     </select>
