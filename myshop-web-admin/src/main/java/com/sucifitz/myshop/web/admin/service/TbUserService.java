@@ -58,4 +58,14 @@ public interface TbUserService {
      * @Return: com.sucifitz.myshop.domain.TbUser
      **/
     TbUser login(String email, String password);
+
+    /**
+     *
+     * @Author: Sucifitz
+     * @Description: 搜索
+     * @Date: 2020/4/15 22:16
+     * @Param: [keyWord]
+     * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
+     **/
+    List<TbUser> search(String keyword);
 }

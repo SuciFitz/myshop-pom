@@ -78,4 +78,19 @@ public class UserController {
             return "user_form";
         }
     }
+
+    /**
+     *
+     * @Author: Sucifitz
+     * @Description: 搜索
+     * @Date: 2020/4/15 22:21
+     * @Param: [keyword, model]
+     * @Return: java.lang.String
+     **/
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String search(String keyword, Model model) {
+        List<TbUser> tbUsers = tbUserService.search(keyword);
+        model.addAttribute("tbUsers", tbUsers);
+        return "user_list";
+    }
 }

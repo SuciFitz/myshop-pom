@@ -59,4 +59,14 @@ public interface TbUserDao {
      * @Return: com.sucifitz.myshop.domain.TbUser
      **/
     TbUser getByEmail(String email);
+
+    /**
+     *
+     * @Author: Sucifitz
+     * @Description: 搜索
+     * @Date: 2020/4/15 22:15
+     * @Param: [tbUser]
+     * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
+     **/
+    List<TbUser> search(TbUser tbUser);
 }
