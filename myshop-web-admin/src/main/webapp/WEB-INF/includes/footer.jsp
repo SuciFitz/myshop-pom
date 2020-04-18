@@ -16,9 +16,12 @@
 <script src="../../static/assets/plugins/jQuery-validation/js/jquery.validate.js"></script>
 <script src="../../static/assets/plugins/jQuery-validation/js/additional-methods.min.js"></script>
 <script src="../../static/assets/plugins/jQuery-validation/js/localization/messages_zh.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="../../static/assets/plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="../../static/assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../static/assets/js/adminlte.min.js"></script>
 <%--app--%>
 <script src="/static/assets/app/validate.js"></script>
+<script src="/static/assets/app/app.js"></script>
