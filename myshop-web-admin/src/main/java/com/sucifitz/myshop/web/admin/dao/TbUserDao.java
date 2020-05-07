@@ -69,4 +69,14 @@ public interface TbUserDao {
      * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
      **/
     List<TbUser> search(TbUser tbUser);
+
+    /**
+     *
+     * @Author: Sucifitz
+     * @Description: 批量删除
+     * @Date: 2020/5/7 21:20
+     * @Param: [ids]
+     * @Return: void
+     **/
+    void deleteMulti(String[] ids);
 }

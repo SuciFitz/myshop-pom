@@ -10,7 +10,6 @@
 package com.sucifitz.myshop.web.admin.web.interceptor;
 
 import com.sucifitz.myshop.domain.TbUser;
-import com.sucifitz.myshop.domain.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

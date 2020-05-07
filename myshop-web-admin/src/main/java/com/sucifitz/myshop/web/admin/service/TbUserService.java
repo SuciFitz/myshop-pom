@@ -68,4 +68,12 @@ public interface TbUserService {
      * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
      **/
     List<TbUser> search(TbUser tbUser);
+
+    /**
+     * 批量删除
+     * @param ids :
+     * @Return: void
+     * @date 2020/5/7 21:21
+     **/
+    void deleteMulti(String[] ids);
 }

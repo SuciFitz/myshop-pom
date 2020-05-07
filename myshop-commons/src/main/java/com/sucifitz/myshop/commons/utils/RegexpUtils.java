@@ -15,7 +15,7 @@ public class RegexpUtils {
     /**
      * 验证邮箱地址
      */
-    public static final String EMAIL = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,3}){1,3}";
+    public static final String EMAIL = "^[a-z0-9A-Z]+[- |a-z0-9A-Z._]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-z]{2,}$";
 
     /**
      * 验证手机号

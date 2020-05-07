@@ -87,6 +87,11 @@ public class TbUserServiceImpl implements TbUserService {
         return tbUserDao.search(tbUser);
     }
 
+    @Override
+    public void deleteMulti(String[] ids) {
+        tbUserDao.deleteMulti(ids);
+    }
+
     /**
      * @Author: Sucifitz
      * @Description: 用户信息有效性验证
