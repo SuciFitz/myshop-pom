@@ -5,3 +5,12 @@
 /myshop-web-admin/logs
 /myshop-web-api/target
 /myshop-web-UI/target
+rebel.xml
+.idea/
+my-shop.iml
+myshop-commons/my-shop-commons.iml
+myshop-dependencies/my-shop-dependencies.iml
+myshop-domain/my-shop-domain.iml
+myshop-web-UI/my-shop-web-ui.iml
+myshop-web-admin/my-shop-web-admin.iml
+myshop-web-api/my-shop-web-api.iml

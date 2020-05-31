@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  *
  * @author Sucifitz
- * @create 2020/1/28
+ * @date 2020/1/28
  * @since 1.0.0
  */
 public class TbUser implements Serializable {

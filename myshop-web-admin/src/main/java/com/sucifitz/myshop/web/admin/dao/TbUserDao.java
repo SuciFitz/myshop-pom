@@ -4,79 +4,93 @@ import com.sucifitz.myshop.domain.TbUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
- * @Author: Sucifitz
-**/
+ * @author Sucifitz
+ **/
 @Repository
 public interface TbUserDao {
 
     /**
-     * @Description: 查询全部用户信息
-     * @Param: []
-     * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
-     **/
+     * 查询全部用户信息
+     *
+     * @return 用户列表
+     */
     List<TbUser> selectAll();
 
     /**
-     * @Description: 新增
-     * @Param: [tbUser]
-     * @Return: void
-     **/
+     * 新增
+     *
+     * @param tbUser tbUser实体
+     */
     void insert(TbUser tbUser);
 
     /**
-     * @Description: 删除
-     * @Param: [id]
-     * @Return: void
-     **/
+     * 删除
+     *
+     * @param id 用户id
+     */
     void delete(Long id);
 
     /**
-     * @Description: 根据id查询
-     * @Param: [id]
-     * @Return: com.sucifitz.myshop.domain.TbUser
-     **/
+     * 根据id查询
+     *
+     * @param id 用户id
+     * @return tbUser实体
+     */
     TbUser getById(Long id);
 
     /**
-     * @Description: 更新
-     * @Param: [tbUser]
-     * @Return: void
-     **/
+     * 更新
+     *
+     * @param tbUser tbUser实体
+     */
     void update(TbUser tbUser);
 
     /**
-     * @Description: 根据用户名模糊查询
-     * @Param: [username]
-     * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
-     **/
+     * 根据用户名模糊查询
+     *
+     * @param username 用户名
+     * @return tbUser实体
+     */
     List<TbUser> selectByName(String username);
 
     /**
-     * @Description: 根据邮箱查询用户
-     * @Param: [email]
-     * @Return: com.sucifitz.myshop.domain.TbUser
-     **/
+     * 根据邮箱查询用户
+     *
+     * @param email 邮箱
+     * @return tbUser实体
+     */
     TbUser getByEmail(String email);
 
     /**
+     * 搜索
      *
-     * @Author: Sucifitz
-     * @Description: 搜索
-     * @Date: 2020/4/15 22:15
-     * @Param: [tbUser]
-     * @Return: java.util.List<com.sucifitz.myshop.domain.TbUser>
-     **/
+     * @param tbUser tbUser实体
+     * @return tbUser实体
+     * @date 2020/4/15 22:15
+     */
     List<TbUser> search(TbUser tbUser);
 
     /**
+     * 批量删除
      *
-     * @Author: Sucifitz
-     * @Description: 批量删除
-     * @Date: 2020/5/7 21:20
-     * @Param: [ids]
-     * @Return: void
-     **/
+     * @param ids id数组
+     * @date 2020/5/7 21:20
+     */
     void deleteMulti(String[] ids);
+
+    /**
+     * 分页
+     * @param params 需要两个参数，start 起始位置，length 长度
+     * @return  用户列表
+     */
+    List<TbUser> pagination(Map<String, Object> params);
+
+    /**
+     * 查询用户数量
+     * @return 用户数量
+     */
+    int userCount();
 }

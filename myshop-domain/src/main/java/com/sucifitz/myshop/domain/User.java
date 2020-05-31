@@ -1,7 +1,7 @@
  /**
   * FileName: User
-  * Author:   Sucifitz
-  * Date:     2020/1/5 17:29
+  * author   Sucifitz
+  * date     2020/1/5 17:29
   * Description: 
   * History:
   * <author>          <time>          <version>          <desc>
@@ -14,7 +14,7 @@
  /**
  *
  * @author Sucifitz
- * @create 2020/1/5
+ * @date 2020/1/5
  * @since 1.0.0
  */
 public class User implements Serializable {

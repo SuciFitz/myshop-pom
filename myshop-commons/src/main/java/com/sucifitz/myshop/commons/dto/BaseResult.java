@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 自定义返回结果
  * @author Sucifitz
- * @create 2020/3/29 16:57
+ * @date 2020/3/29 16:57
  */
 public class BaseResult implements Serializable {
 

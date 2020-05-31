@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理
+ *
  * @author Sucifitz
- * @create 2020/3/15 11:24
+ * @date 2020/3/15 11:24
  */
 @Controller
 @RequestMapping("user")
@@ -40,12 +44,11 @@ public class UserController {
     }
 
     /**
-     *
-     * @Author: Sucifitz
-     * @Description: 跳转到用户列表
-     * @Date: 2020/3/19 23:03
+     * @return java.lang.String
+     * @author Sucifitz
+     * 跳转到用户列表
+     * @date 2020/3/19 23:03
      * @Param: [model]
-     * @Return: java.lang.String
      **/
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -55,12 +58,11 @@ public class UserController {
     }
 
     /**
-     *
-     * @Author: Sucifitz
-     * @Description: 跳转到用户表单页
-     * @Date: 2020/3/19 23:04
+     * @return java.lang.String
+     * @author Sucifitz
+     * 跳转到用户表单页
+     * @date 2020/3/19 23:04
      * @Param: []
-     * @Return: java.lang.String
      **/
     @RequestMapping(value = "form", method = RequestMethod.GET)
     public String form() {
@@ -82,12 +84,11 @@ public class UserController {
     }
 
     /**
-     *
-     * @Author: Sucifitz
-     * @Description: 搜索
-     * @Date: 2020/4/15 22:21
+     * @return java.lang.String
+     * @author Sucifitz
+     * 搜索
+     * @date 2020/4/15 22:21
      * @Param: [tbUser, model]
-     * @Return: java.lang.String
      **/
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String search(TbUser tbUser, Model model) {
@@ -97,12 +98,11 @@ public class UserController {
     }
 
     /**
-     *
-     * @Author: Sucifitz
-     * @Description: 批量删除
-     * @Date: 2020/4/26 22:03
+     * @return java.lang.String
+     * @author Sucifitz
+     * 批量删除
+     * @date 2020/4/26 22:03
      * @Param: [ids]
-     * @Return: java.lang.String
      **/
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.POST)
@@ -117,5 +117,29 @@ public class UserController {
         }
         System.out.println(ids);
         return baseResult;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "pagination", method = RequestMethod.GET)
+    public Map<String, Object> pagination(HttpServletRequest request) {
+        Map<String, Object> res = new HashMap<>(16);
+        String strDraw = request.getParameter("draw");
+        String strStart = request.getParameter("start");
+        String strLength = request.getParameter("length");
+
+        int draw = strDraw == null ? 0 : Integer.parseInt(strDraw);
+        int start = strStart == null ? 0 : Integer.parseInt(strStart);
+        int length = strLength == null ? 0 : Integer.parseInt(strLength);
+        int count = tbUserService.userCount();
+        List<TbUser> tbUsers = tbUserService.pagination(start, length);
+
+        // 封装dataTable需要的结果
+        res.put("draw", draw);
+        res.put("recordsTotal", count);
+        res.put("recordsFiltered", count);
+        res.put("data", tbUsers);
+        res.put("error", "");
+
+        return res;
     }
 }

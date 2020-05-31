@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sucifitz
- * @create 2020/2/1 11:14
+ * @date 2020/2/1 11:14
  */
 @Service
 public class TbUserServiceImpl implements TbUserService {
@@ -92,12 +94,25 @@ public class TbUserServiceImpl implements TbUserService {
         tbUserDao.deleteMulti(ids);
     }
 
+    @Override
+    public List<TbUser> pagination(int start, int length) {
+        Map<String, Object> params = new HashMap<>(3);
+        params.put("start", start);
+        params.put("length", length);
+        return tbUserDao.pagination(params);
+    }
+
+    @Override
+    public int userCount() {
+        return tbUserDao.userCount();
+    }
+
     /**
-     * @Author: Sucifitz
-     * @Description: 用户信息有效性验证
-     * @Date: 2020/3/19 23:51
-     * @Param: [tbUser]
-     * @Return: void
+     * 用户信息有效性验证
+     *
+     * @param tbUser 用户实体
+     * @author Sucifitz
+     * @date 2020/3/19 23:51
      **/
     private BaseResult checkTbUser(TbUser tbUser) {
         BaseResult baseResult = BaseResult.success("新增成功");

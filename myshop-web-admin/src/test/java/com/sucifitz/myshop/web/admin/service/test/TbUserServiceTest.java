@@ -15,7 +15,7 @@ import java.util.List;
 /**
  *
  * @author Sucifitz
- * @create 2020/2/2 13:01
+ * @date 2020/2/2 13:01
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring-context.xml", "classpath:spring-context-druid.xml", "classpath:spring-context-mybatis.xml"})

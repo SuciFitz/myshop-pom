@@ -1,7 +1,7 @@
 /**
  * FileName: LoginController
- * Author:   Sucifitz
- * Date:     2019/6/21 22:13
+ * author   Sucifitz
+ * date     2019/6/21 22:13
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  *
  * @author Sucifitz
- * @create 2019/6/21
+ * @date 2019/6/21
  * @since 1.0.0
  */
 @Controller
@@ -36,11 +36,11 @@ public class LoginController {
 
     /**
      *
-     * @Author: Sucifitz
-     * @Description: 登录跳转
-     * @Date: 2020/1/5 16:09
+     * @author Sucifitz
+     * 登录跳转
+     * @date 2020/1/5 16:09
      * @Param: []
-     * @Return: java.lang.String
+     * @return java.lang.String
      **/
     @RequestMapping(value = {"", "login"}, method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
@@ -53,11 +53,11 @@ public class LoginController {
 
     /**
      *
-     * @Author: Sucifitz
-     * @Description: 登录逻辑
-     * @Date: 2020/1/5 16:09
+     * @author Sucifitz
+     * 登录逻辑
+     * @date 2020/1/5 16:09
      * @Param: [email, password]
-     * @Return: java.lang.String
+     * @return java.lang.String
      **/
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam(required = true) String email, @RequestParam(required = true) String password,

@@ -1,7 +1,7 @@
 /**
  * FileName: MainController
- * Author:   Sucifitz
- * Date:     2020/1/5 16:10
+ * author   Sucifitz
+ * date     2020/1/5 16:10
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  *
  * @author Sucifitz
- * @create 2020/1/5
+ * @date 2020/1/5
  * @since 1.0.0
  */
 @Controller

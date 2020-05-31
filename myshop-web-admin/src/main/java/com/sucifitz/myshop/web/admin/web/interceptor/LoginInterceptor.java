@@ -1,7 +1,7 @@
 /**
  * FileName: LoginInterceptor
- * Author:   Sucifitz
- * Date:     2020/1/5 16:19
+ * author   Sucifitz
+ * date     2020/1/5 16:19
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 登录拦截器
  * @author Sucifitz
- * @create 2020/1/5
+ * @date 2020/1/5
  * @since 1.0.0
  */
 public class LoginInterceptor implements HandlerInterceptor {
