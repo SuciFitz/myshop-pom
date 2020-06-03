@@ -1,13 +1,14 @@
 package com.sucifitz.myshop.web.admin.service;
 
 import com.sucifitz.myshop.commons.dto.BaseResult;
+import com.sucifitz.myshop.commons.dto.PageInfo;
 import com.sucifitz.myshop.domain.TbUser;
 
 import java.util.List;
 
 /**
  * @author Sucifitz
-**/
+ **/
 public interface TbUserService {
 
     /**
@@ -81,14 +82,17 @@ public interface TbUserService {
 
     /**
      * 分页
-     * @param start 起始位置
+     *
+     * @param draw   长度
+     * @param start  起始位置
      * @param length 长度
-     * @return  用户列表
+     * @return 用户列表
      */
-    List<TbUser> pagination(int start, int length);
+    PageInfo<TbUser> pagination(int draw, int start, int length);
 
     /**
      * 查询用户数量
+     *
      * @return 用户数量
      */
     int userCount();

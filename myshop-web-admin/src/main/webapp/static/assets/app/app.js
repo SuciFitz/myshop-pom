@@ -11,7 +11,7 @@ let app = function () {
     let handlerInitCheckbox = function () {
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
-            radioClass   : 'iradio_minimal-blue'
+            radioClass: 'iradio_minimal-blue'
         });
 
         // 顶部控制CheckBox
@@ -100,8 +100,63 @@ let app = function () {
         }
     };
 
+    // 初始化datatables
+    let handlerInitDataTables = function (url, columns) {
+        $("#dataTable").dataTable({
+            // 是否分页
+            paging: true,
+            // 底部信息
+            info: true,
+            // 页数据量
+            lengthChange: true,
+            // 是否允许Datatables开启排序
+            ordering: false,
+            // 展示加载状态
+            processing: true,
+            // 搜索
+            searching: false,
+            // 开启服务端分页
+            serverSide: true,
+            ajax: {
+                url: url
+            },
+            // 控制Datatables的延迟渲染，可以提高初始化的速度
+            deferRender: true,
+            // 设定列的所有初始属性
+            columns: columns,
+            // 国际化
+            language: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            drawCallback: function (settings, json) {
+                app.init();
+            }
+        });
+    }
+
     return {
-        init: function() {
+        init: function () {
             handlerInitCheckbox();
             handlerCheckboxAll();
         },
@@ -112,6 +167,10 @@ let app = function () {
 
         deleteMulti: function (url) {
             handleDeleteMulti(url);
+        },
+
+        initDataTables: function (url, columns) {
+            handlerInitDataTables(url, columns);
         }
     }
 }();

@@ -1,6 +1,7 @@
 package com.sucifitz.myshop.web.admin.service.impl;
 
 import com.sucifitz.myshop.commons.dto.BaseResult;
+import com.sucifitz.myshop.commons.dto.PageInfo;
 import com.sucifitz.myshop.commons.utils.RegexpUtils;
 import com.sucifitz.myshop.domain.TbUser;
 import com.sucifitz.myshop.web.admin.dao.TbUserDao;
@@ -95,11 +96,18 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public List<TbUser> pagination(int start, int length) {
+    public PageInfo<TbUser> pagination(int draw, int start, int length) {
+        int count = tbUserDao.userCount();
         Map<String, Object> params = new HashMap<>(3);
         params.put("start", start);
         params.put("length", length);
-        return tbUserDao.pagination(params);
+
+        PageInfo<TbUser> pageInfo = new PageInfo<>();
+        pageInfo.setDraw(draw);
+        pageInfo.setRecordsTotal(count);
+        pageInfo.setRecordsFiltered(count);
+        pageInfo.setData(tbUserDao.pagination(params));
+        return pageInfo;
     }
 
     @Override

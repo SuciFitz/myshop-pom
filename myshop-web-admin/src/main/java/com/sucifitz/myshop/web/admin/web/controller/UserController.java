@@ -1,6 +1,7 @@
 package com.sucifitz.myshop.web.admin.web.controller;
 
 import com.sucifitz.myshop.commons.dto.BaseResult;
+import com.sucifitz.myshop.commons.dto.PageInfo;
 import com.sucifitz.myshop.domain.TbUser;
 import com.sucifitz.myshop.web.admin.service.TbUserService;
 import org.apache.commons.lang3.StringUtils;
@@ -121,8 +122,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "pagination", method = RequestMethod.GET)
-    public Map<String, Object> pagination(HttpServletRequest request) {
-        Map<String, Object> res = new HashMap<>(16);
+    public PageInfo<TbUser> pagination(HttpServletRequest request) {
         String strDraw = request.getParameter("draw");
         String strStart = request.getParameter("start");
         String strLength = request.getParameter("length");
@@ -130,16 +130,7 @@ public class UserController {
         int draw = strDraw == null ? 0 : Integer.parseInt(strDraw);
         int start = strStart == null ? 0 : Integer.parseInt(strStart);
         int length = strLength == null ? 0 : Integer.parseInt(strLength);
-        int count = tbUserService.userCount();
-        List<TbUser> tbUsers = tbUserService.pagination(start, length);
 
-        // 封装dataTable需要的结果
-        res.put("draw", draw);
-        res.put("recordsTotal", count);
-        res.put("recordsFiltered", count);
-        res.put("data", tbUsers);
-        res.put("error", "");
-
-        return res;
+        return tbUserService.pagination(draw, start, length);
     }
 }
