@@ -22,6 +22,7 @@ public interface TbUserService {
      * 新增
      *
      * @param tbUser tbUser实体
+     * @return 保存结果
      */
     BaseResult save(TbUser tbUser);
 
@@ -48,29 +49,13 @@ public interface TbUserService {
     void update(TbUser tbUser);
 
     /**
-     * 根据用户名模糊查询
-     *
-     * @param username 用户名
-     * @return tbUser实体
-     */
-    List<TbUser> selectByName(String username);
-
-    /**
      * 根据邮箱查询用户
      *
      * @param email 邮箱
+     * @param password 密码
      * @return tbUser实体
      */
     TbUser login(String email, String password);
-
-    /**
-     * 搜索
-     *
-     * @param tbUser tbUser实体
-     * @return tbUser实体
-     * @date 2020/4/15 22:15
-     */
-    List<TbUser> search(TbUser tbUser);
 
     /**
      * 批量删除
@@ -91,11 +76,4 @@ public interface TbUserService {
      */
     PageInfo<TbUser> pagination(int draw, int start, int length, TbUser tbUser);
 
-    /**
-     * 查询用户数量
-     *
-     * @param tbUser 查询条件
-     * @return 用户数量
-     */
-    int userCount(TbUser tbUser);
 }

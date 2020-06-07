@@ -1,12 +1,3 @@
-/**
- * FileName: LoginController
- * author   Sucifitz
- * date     2019/6/21 22:13
- * Description:
- * History:
- * <author>          <time>          <version>          <desc>
- * 作者姓名           修改时间           版本号              描述
- */
 package com.sucifitz.myshop.web.admin.web.controller;
 
 import com.sucifitz.myshop.domain.TbUser;
@@ -17,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,12 +25,10 @@ public class LoginController {
     private TbUserService tbUserService;
 
     /**
-     *
-     * @author Sucifitz
      * 登录跳转
+     * @param request http请求
+     * @return 如果session有记录，则免密登录
      * @date 2020/1/5 16:09
-     * @Param: []
-     * @return java.lang.String
      **/
     @RequestMapping(value = {"", "login"}, method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
@@ -52,15 +40,16 @@ public class LoginController {
     }
 
     /**
-     *
-     * @author Sucifitz
      * 登录逻辑
+     * @param email 邮箱
+	 * @param password 密码
+	 * @param httpServletRequest http请求
+	 * @param model 返回信息
+     * @return 成功则跳转到主页，否则返回错误信息
      * @date 2020/1/5 16:09
-     * @Param: [email, password]
-     * @return java.lang.String
      **/
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(@RequestParam(required = true) String email, @RequestParam(required = true) String password,
+    public String login(String email, String password,
                         HttpServletRequest httpServletRequest, Model model) {
         TbUser tbUser = tbUserService.login(email, password);
         // 登陆失败
@@ -76,6 +65,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * 登出，清除session记录
+     * @param request http请求
+     * @return 跳转到登录页面
+     * @date 2020/6/7 15:11
+     **/
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();

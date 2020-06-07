@@ -49,29 +49,12 @@ public interface TbUserDao {
     void update(TbUser tbUser);
 
     /**
-     * 根据用户名模糊查询
-     *
-     * @param username 用户名
-     * @return tbUser实体
-     */
-    List<TbUser> selectByName(String username);
-
-    /**
      * 根据邮箱查询用户
      *
      * @param email 邮箱
      * @return tbUser实体
      */
     TbUser getByEmail(String email);
-
-    /**
-     * 搜索
-     *
-     * @param tbUser tbUser实体
-     * @return tbUser实体
-     * @date 2020/4/15 22:15
-     */
-    List<TbUser> search(TbUser tbUser);
 
     /**
      * 批量删除

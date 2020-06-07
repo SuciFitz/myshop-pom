@@ -67,11 +67,6 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public List<TbUser> selectByName(String username) {
-        return tbUserDao.selectByName(username);
-    }
-
-    @Override
     public TbUser login(String email, String password) {
         TbUser tbUser = tbUserDao.getByEmail(email);
         if (tbUser != null) {
@@ -83,11 +78,6 @@ public class TbUserServiceImpl implements TbUserService {
             }
         }
         return null;
-    }
-
-    @Override
-    public List<TbUser> search(TbUser tbUser) {
-        return tbUserDao.search(tbUser);
     }
 
     @Override
@@ -109,11 +99,6 @@ public class TbUserServiceImpl implements TbUserService {
         pageInfo.setRecordsFiltered(count);
         pageInfo.setData(tbUserDao.pagination(params));
         return pageInfo;
-    }
-
-    @Override
-    public int userCount(TbUser tbUser) {
-        return tbUserDao.userCount(tbUser);
     }
 
     /**

@@ -42,6 +42,10 @@ let app = function () {
     let handleDeleteMulti = function (url) {
         _idArray = [];
 
+        // 将重复使用的选择器提取出来
+        let _btn = $("#btnModalOk");
+        let _default = $("#modal-default");
+
         // 将选中元素的id存入数组中
         _checkbox.each(function () {
             let _id = $(this).attr("id");
@@ -50,14 +54,17 @@ let app = function () {
             }
         });
 
+        // 判断用户是否选择数据项
         if (_idArray.length === 0) {
             $("#modal-message").html("您还没有选择任何数据项，请至少选择一项")
         } else {
             $("#modal-message").html("确定删除?")
         }
-        $("#modal-default").modal('show');
-        $("#btnModalOk").off("click");//接触绑定事件，防止多次绑定
-        $("#btnModalOk").bind("click", function () {
+
+        // 点击删除弹出模态框
+        _default.modal('show');
+        _btn.off("click");//接触绑定事件，防止多次绑定
+        _btn.bind("click", function () {
             del();
         });
 
@@ -65,7 +72,7 @@ let app = function () {
          * 当前函数的私有函数,删除数据
          */
         function del() {
-            $("#modal-default").modal('hide');
+            _default.modal('hide');
             // 如果没有选择数据
             if (_idArray.length === 0) {
                 //...
@@ -80,19 +87,24 @@ let app = function () {
                         },
                         dataType: "json",
                         success: function (res) {
-                            console.log(res)
+                            // 请求成功后，先清除绑定的click事件
+                            _btn.unbind("click");
+
                             // 删除成功
                             if (res.status === 200) {
-                                window.location.reload();
-                            } else {
-                                // 删除失败
-                                $("#btnModalOk").unbind("click");
-                                $("#btnModalOk").one("click", function () {
-                                    $("#modal-default").modal('hide');
+                                _btn.one("click", function () {
+                                    window.location.reload();
                                 });
-                                $("#modal-message").html(res.message);
-                                $("#modal-default").modal('show');
                             }
+                            // 删除失败
+                            else {
+                                _btn.one("click", function () {
+                                    _default.modal('hide');
+                                });
+                            }
+
+                            $("#modal-message").html(res.message);
+                            _default.modal('show');
                         }
                     })
                 }, 500)
@@ -168,23 +180,23 @@ let app = function () {
     }
 
     return {
+        // 初始化
         init: function () {
             handlerInitCheckbox();
             handlerCheckboxAll();
         },
 
-        getCheckbox: function () {
-            return _checkbox;
-        },
-
+        // 批量删除
         deleteMulti: function (url) {
             handleDeleteMulti(url);
         },
 
+        // dataTables
         initDataTables: function (url, columns) {
             return handleInitDataTables(url, columns);
         },
 
+        // 显示详情
         showDetail: function (url) {
             handleShowDetail(url);
         }

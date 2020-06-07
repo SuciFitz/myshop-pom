@@ -62,15 +62,6 @@
         WHERE id = #{id}
     </update>
 
-    <select id="selectByName" resultType="TbUser">
-        SELECT
-          <include refid="tbUserColumns"/>
-        FROM
-          tb_user AS a
-        WHERE
-          a.username LIKE CONCAT ('%', #{username}, '%')
-    </select>
-
     <select id="getByEmail" resultType="TbUser">
         SELECT
           <include refid="tbUserColumns"/>

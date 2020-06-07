@@ -83,20 +83,6 @@ public class UserController {
     /**
      * @return java.lang.String
      * @author Sucifitz
-     * 搜索
-     * @date 2020/4/15 22:21
-     * @Param: [tbUser, model]
-     **/
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String search(TbUser tbUser, Model model) {
-        List<TbUser> tbUsers = tbUserService.search(tbUser);
-        model.addAttribute("tbUsers", tbUsers);
-        return "user_list";
-    }
-
-    /**
-     * @return java.lang.String
-     * @author Sucifitz
      * 批量删除
      * @date 2020/4/26 22:03
      * @Param: [ids]

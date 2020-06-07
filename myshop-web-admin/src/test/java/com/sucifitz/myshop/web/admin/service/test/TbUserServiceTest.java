@@ -61,11 +61,4 @@ public class TbUserServiceTest {
         tbUserService.update(tbUser);
     }
 
-    @Test
-    public void selectByUserName() {
-        List<TbUser> tbUsers = tbUserService.selectByName("uni");
-        for (TbUser tbUser : tbUsers) {
-            System.out.println(tbUser.getUsername());
-        }
-    }
 }
