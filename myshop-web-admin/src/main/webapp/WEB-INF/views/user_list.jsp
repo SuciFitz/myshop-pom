@@ -36,45 +36,42 @@
 							<h3 class="box-title">高级搜索</h3>
 						</div>
 						<!-- /.box-header -->
-						<!-- form start -->
-						<form:form cssClass="form-horizontal" action="/user/search" modelAttribute="tbUser">
-							<div class="box-body">
-								<div class="row">
-									<div class="col-xs-12 col-sm-3">
-										<div class="form-group">
-											<label for="username" class="col-sm-4 control-label">姓名</label>
-											
-											<div class="col-sm-8">
-												<form:input path="username" cssClass="form-control" placeholder="姓名"/>
-											</div>
+						<div class="box-body">
+							<div class="row form-horizontal">
+								<div class="col-xs-12 col-sm-3">
+									<div class="form-group">
+										<label for="username" class="col-sm-4 control-label">姓名</label>
+										
+										<div class="col-sm-8">
+											<input id="username" class="form-control" placeholder="姓名">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-3">
-										<div class="form-group">
-											<label for="email" class="col-sm-4 control-label">邮箱</label>
-											
-											<div class="col-sm-8">
-												<form:input path="email" cssClass="form-control" placeholder="邮箱"/>
-											</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="form-group">
+										<label for="email" class="col-sm-4 control-label">邮箱</label>
+										
+										<div class="col-sm-8">
+											<input id="email" class="form-control" placeholder="邮箱">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-3">
-										<div class="form-group">
-											<label for="phone" class="col-sm-4 control-label">手机</label>
-											
-											<div class="col-sm-8">
-												<form:input path="phone" cssClass="form-control" placeholder="手机"/>
-											</div>
+								</div>
+								<div class="col-xs-12 col-sm-3">
+									<div class="form-group">
+										<label for="phone" class="col-sm-4 control-label">手机</label>
+										
+										<div class="col-sm-8">
+											<input id="phone" class="form-control" placeholder="手机">
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- /.box-body -->
-							<div class="box-footer">
-								<button type="submit" class="btn btn-info pull-right">搜索</button>
-							</div>
-							<!-- /.box-footer -->
-						</form:form>
+						</div>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<button type="button" onclick="search()" class="btn btn-info pull-right">搜索</button>
+						</div>
+						<!-- /.box-footer -->
 					</div>
 					
 					<c:if test="${baseResult != null}">
@@ -118,27 +115,7 @@
 									<th>操作</th>
 								</tr>
 								</thead>
-								<tbody>
-								<%--								<c:forEach items="${tbUsers}" var="tbUser">--%>
-								<%--									<tr>--%>
-								<%--										<td><input id="${tbUser.id}" type="checkbox" class="minimal"></td>--%>
-								<%--										<td>${tbUser.id}</td>--%>
-								<%--										<td>${tbUser.username}</td>--%>
-								<%--										<td>${tbUser.phone}</td>--%>
-								<%--										<td>${tbUser.email}</td>--%>
-								<%--										<td><fmt:formatDate value="${tbUser.updated}"--%>
-								<%--										                    pattern="yyyy-MM-dd HH:mm:ss"/></td>--%>
-								<%--										<td>--%>
-								<%--											<a href="#" class="btn btn-default" style="margin-right: 5px;"><i--%>
-								<%--													class="fa fa-search"></i> 查看</a>--%>
-								<%--											<a href="#" class="btn btn-primary" style="margin-right: 5px;"><i--%>
-								<%--													class="fa fa-edit"></i> 编辑</a>--%>
-								<%--											<a href="#" class="btn btn-danger" style="margin-right: 5px;"><i--%>
-								<%--													class="fa fa-trash-o"></i> 删除</a>--%>
-								<%--										</td>--%>
-								<%--									</tr>--%>
-								<%--								</c:forEach>--%>
-								</tbody>
+								<tbody></tbody>
 							</table>
 						</div>
 						<!-- /.box-body -->
@@ -157,6 +134,7 @@
 <sys:modal/>
 
 <script>
+	let _dataTable;
     $(function () {
 	    let _columns = [
             {
@@ -178,8 +156,20 @@
                 }
             },
         ];
-	    app.initDataTables("/user/pagination", _columns);
+	    _dataTable = app.initDataTables("/user/pagination", _columns);
     });
+    
+    function search() {
+        let username = $("#username").val();
+        let phone = $("#phone").val();
+        let email = $("#email").val();
+        _dataTable.settings()[0].ajax.data = {
+            username: username,
+            phone: phone,
+            email: email
+        };
+        _dataTable.ajax.reload();
+    }
 </script>
 </body>
 </html>

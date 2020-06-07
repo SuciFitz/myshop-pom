@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 用户管理
@@ -120,7 +118,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "pagination", method = RequestMethod.GET)
-    public PageInfo<TbUser> pagination(HttpServletRequest request) {
+    public PageInfo<TbUser> pagination(HttpServletRequest request, TbUser tbUser) {
         String strDraw = request.getParameter("draw");
         String strStart = request.getParameter("start");
         String strLength = request.getParameter("length");
@@ -129,16 +127,15 @@ public class UserController {
         int start = strStart == null ? 0 : Integer.parseInt(strStart);
         int length = strLength == null ? 0 : Integer.parseInt(strLength);
 
-        return tbUserService.pagination(draw, start, length);
+        return tbUserService.pagination(draw, start, length, tbUser);
     }
 
     /**
      * 显示用户详情
-     * @param tbUser 用户id
      * @return
      */
     @RequestMapping(value = "detail", method = RequestMethod.GET)
-    public String detail(TbUser tbUser) {
+    public String detail() {
         return "user_detail";
     }
 }

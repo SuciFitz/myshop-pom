@@ -1,5 +1,6 @@
 package com.sucifitz.myshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sucifitz.myshop.commons.persitence.BaseEntity;
 
 /**
@@ -23,6 +24,7 @@ public class TbUser extends BaseEntity {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }

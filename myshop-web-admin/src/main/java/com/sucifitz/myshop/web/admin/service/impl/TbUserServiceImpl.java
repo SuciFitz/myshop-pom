@@ -96,11 +96,12 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public PageInfo<TbUser> pagination(int draw, int start, int length) {
-        int count = tbUserDao.userCount();
+    public PageInfo<TbUser> pagination(int draw, int start, int length, TbUser tbUser) {
+        int count = tbUserDao.userCount(tbUser);
         Map<String, Object> params = new HashMap<>(3);
         params.put("start", start);
         params.put("length", length);
+        params.put("tbUser", tbUser);
 
         PageInfo<TbUser> pageInfo = new PageInfo<>();
         pageInfo.setDraw(draw);
@@ -111,8 +112,8 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public int userCount() {
-        return tbUserDao.userCount();
+    public int userCount(TbUser tbUser) {
+        return tbUserDao.userCount(tbUser);
     }
 
     /**

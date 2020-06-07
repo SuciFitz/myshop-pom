@@ -83,14 +83,17 @@ public interface TbUserDao {
 
     /**
      * 分页
+     *
      * @param params 需要两个参数，start 起始位置，length 长度
-     * @return  用户列表
+     * @return 用户列表
      */
     List<TbUser> pagination(Map<String, Object> params);
 
     /**
      * 查询用户数量
+     *
+     * @param tbUser 查询条件
      * @return 用户数量
      */
-    int userCount();
+    int userCount(TbUser tbUser);
 }

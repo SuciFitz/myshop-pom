@@ -86,14 +86,16 @@ public interface TbUserService {
      * @param draw   长度
      * @param start  起始位置
      * @param length 长度
+     * @param tbUser 查询条件
      * @return 用户列表
      */
-    PageInfo<TbUser> pagination(int draw, int start, int length);
+    PageInfo<TbUser> pagination(int draw, int start, int length, TbUser tbUser);
 
     /**
      * 查询用户数量
      *
+     * @param tbUser 查询条件
      * @return 用户数量
      */
-    int userCount();
+    int userCount(TbUser tbUser);
 }
