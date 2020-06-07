@@ -171,17 +171,15 @@
             {data: "updated"},
             {
                 data: function (row, type, val, data) {
-                    return '<a href="#" class="btn btn-default" style="margin-right: 5px;"><i' +
-                        'class="fa fa-search"></i> 查看</a>' +
-                        '<a href="#" class="btn btn-primary" style="margin-right: 5px;"><i' +
-                        'class="fa fa-edit"></i> 编辑</a>' +
-                        '<a href="#" class="btn btn-danger" style="margin-right: 5px;"><i' +
-                        'class="fa fa-trash-o"></i> 删除</a>'
+                    let url = "/user/detail?id=" + row.id;
+                    return '<a href="#" class="btn btn-default" style="margin-right: 5px;" onclick="app.showDetail(\'' + url + '\')"><i class="fa fa-search"></i> 查看</a>' +
+                        '<a href="/user/form?id=' + row.id +'" class="btn btn-primary" style="margin-right: 5px;"><iclass="fa fa-edit"></i> 编辑</a>' +
+                        '<a href="#" class="btn btn-danger" style="margin-right: 5px;"><i class="fa fa-trash-o"></i> 删除</a>'
                 }
             },
         ];
 	    app.initDataTables("/user/pagination", _columns);
-    })
+    });
 </script>
 </body>
 </html>

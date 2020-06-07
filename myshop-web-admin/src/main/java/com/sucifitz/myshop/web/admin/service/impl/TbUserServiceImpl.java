@@ -37,9 +37,9 @@ public class TbUserServiceImpl implements TbUserService {
         // 通过验证
         if (baseResult.getStatus() == BaseResult.STATUS_SUCCESS) {
             tbUser.setUpdated(new Date());
+            tbUser.setPassword(DigestUtils.md5DigestAsHex(tbUser.getPassword().getBytes()));
             if (tbUser.getId() == null) {
                 //新增
-                tbUser.setPassword(DigestUtils.md5DigestAsHex(tbUser.getPassword().getBytes()));
                 tbUser.setCreated(new Date());
                 tbUserDao.insert(tbUser);
             } else {

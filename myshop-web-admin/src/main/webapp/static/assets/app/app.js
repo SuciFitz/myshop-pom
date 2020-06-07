@@ -101,7 +101,7 @@ let app = function () {
     };
 
     // 初始化datatables
-    let handlerInitDataTables = function (url, columns) {
+    let handleInitDataTables = function (url, columns) {
         $("#dataTable").dataTable({
             // 是否分页
             paging: true,
@@ -153,6 +153,18 @@ let app = function () {
                 app.init();
             }
         });
+    };
+
+    // 查看详情
+    let handleShowDetail = function (url) {
+        $.ajax({
+            url: url,
+            type: "get",
+            success: function (res) {
+                $("#modal-detail-body").html(res)
+                $("#modal-detail").modal('show')
+            }
+        })
     }
 
     return {
@@ -170,7 +182,11 @@ let app = function () {
         },
 
         initDataTables: function (url, columns) {
-            handlerInitDataTables(url, columns);
+            handleInitDataTables(url, columns);
+        },
+
+        showDetail: function (url) {
+            handleShowDetail(url);
         }
     }
 }();
